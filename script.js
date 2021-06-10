@@ -63,12 +63,19 @@ function start() {
   }, 1000);
 
   const term = new Terminal();
+  let socket;
+
   try {
-    const socket = new WebSocket(
+    socket = new WebSocket(
       `${document.location.protocol === "http:" ? "ws" : "wss"}://${
         apiHost
       }/ws/${current_language}`
     );
+
+    socket.onerror = () => {
+      throw new Error()
+    }
+
   } catch (e) {
 
     document.getElementById("error").style.display="block";
