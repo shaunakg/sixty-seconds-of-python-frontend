@@ -39,7 +39,7 @@ div.timer {
   height: 20px;
 
   border-radius: 2px;
-  background-color: coral;
+  background-color: #E0CA3C;
 
   margin-bottom: 20px;
   transition: width 0.25s, height 2s;
