@@ -24,7 +24,7 @@ const languages = document.getElementById("languages");
 const lang = document.getElementById("lang");
 
 lang.innerText = current_language;
-fetch("/meta/languages").then(r => r.json()).then(j => {
+fetch("https://" + apiHost + "/meta/languages").then(r => r.json()).then(j => {
 
   languages.innerHTML = j.map(l => `<a href="?language=${l}">${l}</a>`).join(", ")
 
