@@ -63,11 +63,25 @@ function start() {
   }, 1000);
 
   const term = new Terminal();
-  const socket = new WebSocket(
-    `${document.location.protocol === "http:" ? "ws" : "ws"}://${
-      apiHost
-    }/ws/${current_language}`
-  );
+  let socket;
+
+  try {
+    socket = new WebSocket(
+      `${document.location.protocol === "http:" ? "ws" : "wss"}://${
+        apiHost
+      }/ws/${current_language}`
+    );
+  } catch (e) {
+
+    document.getElementById("error").style.display="block";
+    clearInterval(interval);
+    timer.style.width = "100%";
+    button.style.display = "inline-block";
+    isTerminalOn = false;
+
+    return;
+
+  }
 
   socket.onerror = () => {
 
