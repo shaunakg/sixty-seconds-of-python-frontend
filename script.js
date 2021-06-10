@@ -4,7 +4,7 @@
 // Under MIT Licence
 // 
 
-const apiHost = "api.sixtysecondsofpython.srg.id.au"
+const apiHost = "shaunak-personal.ts.r.appspot.com"
 
 let isTerminalOn = false;
 let timeLeft = 1;
