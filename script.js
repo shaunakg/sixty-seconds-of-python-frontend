@@ -28,7 +28,9 @@ fetch("https://" + apiHost + "/meta/languages").then(r => r.json()).then(j => {
 
   languages.innerHTML = j.map(l => `<a href="?language=${l}">${l}</a>`).join(", ")
 
-});
+}).catch(error => {
+  languages.innerHTML = "<span style='color:red'>[error]</span>";
+})
 
 function start() {
 
@@ -74,6 +76,8 @@ function start() {
     timer.style.width = "100%";
     button.style.display = "inline-block";
     isTerminalOn = false;
+
+    return;
 
   }
 
