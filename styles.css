@@ -20,9 +20,9 @@ body {
 
 div#error {
   display: block;
-  margin-bottom: 20px;
-  background: coral;
-  padding: 25px;
+  margin-bottom: 18px;
+  background: red;
+  padding: 20px;
   color: white;
 }
 
