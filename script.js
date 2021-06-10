@@ -63,20 +63,13 @@ function start() {
   }, 1000);
 
   const term = new Terminal();
-  let socket;
+  const socket = new WebSocket(
+    `${document.location.protocol === "http:" ? "ws" : "wss"}://${
+      apiHost
+    }/ws/${current_language}`
+  );
 
-  try {
-    socket = new WebSocket(
-      `${document.location.protocol === "http:" ? "ws" : "wss"}://${
-        apiHost
-      }/ws/${current_language}`
-    );
-
-    socket.onerror = () => {
-      throw new Error()
-    }
-
-  } catch (e) {
+  socket.onerror = () => {
 
     document.getElementById("error").style.display="block";
     clearInterval(interval);
@@ -88,15 +81,17 @@ function start() {
 
   }
 
-  const websocketAddon = new AttachAddon.AttachAddon(socket);
-  const resizeAddon = new FitAddon.FitAddon();
+  socket.onopen = () => {
+    const websocketAddon = new AttachAddon.AttachAddon(socket);
+    const resizeAddon = new FitAddon.FitAddon();
 
-  term.loadAddon(websocketAddon);
-  term.loadAddon(resizeAddon);
+    term.loadAddon(websocketAddon);
+    term.loadAddon(resizeAddon);
 
-  term.open(terminal);
+    term.open(terminal);
 
-  resizeAddon.fit();
-  window.addEventListener("resize", () => resizeAddon.fit());
+    resizeAddon.fit();
+    window.addEventListener("resize", () => resizeAddon.fit());
+  }
 
 }
