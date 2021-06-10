@@ -55,9 +55,6 @@ function start() {
       timer.classList.add("flashing");
       button.style.display = "inline-block";
       isTerminalOn = false;
-
-      timer.classList.add("flashing");
-      timer.style.backgroundColor = "red";
     }
 
     timer.style.width = (timeLeft * 100) + "%";
@@ -96,6 +93,9 @@ function start() {
     timer.style.width = "100%";
     button.style.display = "inline-block";
     isTerminalOn = false;
+
+    timer.classList.add("flashing");
+    timer.style.backgroundColor = "red";
 
     return;
 
