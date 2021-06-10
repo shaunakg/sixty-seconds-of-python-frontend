@@ -42,7 +42,7 @@ div.timer {
   background-color: #E0CA3C;
 
   margin-bottom: 20px;
-  transition: width 0.25s, height 2s;
+  transition: width 0.25s, height 2s, background-color 0.25s;
 }
 
 div.timer.flashing {
