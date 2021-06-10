@@ -18,6 +18,14 @@ body {
 
 }
 
+div#error {
+  display: block;
+  margin-bottom: 20px;
+  background: coral;
+  padding: 25px;
+  color: white;
+}
+
 div.container {
   padding: 20px;
   margin: 40px;
