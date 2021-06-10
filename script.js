@@ -26,7 +26,23 @@ const lang = document.getElementById("lang");
 lang.innerText = current_language;
 fetch("https://" + apiHost + "/meta/languages").then(r => r.json()).then(j => {
 
-  languages.innerHTML = j.map(l => `<a href="?language=${l}">${l}</a>`).join(", ")
+  languages.innerHTML = j.map(l => `<a href="?language=${l}">${l}</a>`).join(", ");
+  if (!j.includes(current_language)) {
+
+    document.getElementById("error").style.display="block";
+    document.getElementById("error").innerText = `Your chosen language, "${current_language}", is not supported. Please pick another from the menu above.`;
+
+    button.style.display = "none";
+    isTerminalOn = true;
+    timer.style.width = "100%";
+    isTerminalOn = false;
+
+    timer.classList.add("flashing");
+    timer.style.backgroundColor = "red";
+
+    return;
+
+  }
 
 }).catch(error => {
   languages.innerHTML = "<span style='color:red'>[error]</span>";
