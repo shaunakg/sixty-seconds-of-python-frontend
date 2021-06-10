@@ -41,6 +41,7 @@ function start() {
   button.style.display = "none";
 
   timer.classList.remove("flashing");
+  document.getElementById("error").style.display="none";
   timer.style.width = "100%";
   timeLeft = 1;
 
@@ -60,11 +61,21 @@ function start() {
   }, 1000);
 
   const term = new Terminal();
-  const socket = new WebSocket(
-    `${document.location.protocol === "http:" ? "ws" : "wss"}://${
-      apiHost
-    }/ws/${current_language}`
-  );
+  try {
+    const socket = new WebSocket(
+      `${document.location.protocol === "http:" ? "ws" : "wss"}://${
+        apiHost
+      }/ws/${current_language}`
+    );
+  } catch (e) {
+
+    document.getElementById("error").style.display="block";
+    clearInterval(interval);
+    timer.style.width = "100%";
+    button.style.display = "inline-block";
+    isTerminalOn = false;
+
+  }
 
   const websocketAddon = new AttachAddon.AttachAddon(socket);
   const resizeAddon = new FitAddon.FitAddon();
