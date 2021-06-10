@@ -64,7 +64,7 @@ function start() {
 
   const term = new Terminal();
   const socket = new WebSocket(
-    `${document.location.protocol === "http:" ? "ws" : "wss"}://${
+    `${document.location.protocol === "http:" ? "ws" : "ws"}://${
       apiHost
     }/ws/${current_language}`
   );
