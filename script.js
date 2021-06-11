@@ -4,7 +4,8 @@
 // Under MIT Licence
 // 
 
-const apiHost = "shaunak-personal.ts.r.appspot.com"
+const usp = new URLSearchParams(window.location.search);
+const apiHost = usp.get("useAPI") || "shaunak-personal.ts.r.appspot.com"
 
 let isTerminalOn = false;
 let timeLeft = 1;
@@ -16,7 +17,6 @@ let messages = [];
 
 let timer = document.getElementById("timer");
 let button = document.getElementById("start-btn");
-const usp = new URLSearchParams(window.location.search);
 
 const current_language = usp.get('lang') || usp.get('language') || 'python3';
 
