@@ -26,7 +26,7 @@ const lang = document.getElementById("lang");
 lang.innerText = current_language;
 fetch("https://" + apiHost + "/meta/languages").then(r => r.json()).then(j => {
 
-  languages.innerHTML = j.map(l => `<a href="?language=${l}">${l}</a>`).join(", ");
+  languages.innerHTML = j.map(l => `<a href="?language=${l}">${l}</a>&useAPI=${apiHost}`).join(", ");
   if (!j.includes(current_language)) {
 
     document.getElementById("error").style.display="block";
