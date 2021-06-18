@@ -7,7 +7,7 @@
 const usp = new URLSearchParams(window.location.search);
 
 // Specify custom API with ?useAPI=my-api-host.com
-const apiHost = usp.get("useAPI") || "60api.sixtysecondshell.srg.id.au"
+const apiHost = usp.get("useAPI") || "60api.srg.id.au"
 
 let isTerminalOn = false;
 let timeLeft = 1;
