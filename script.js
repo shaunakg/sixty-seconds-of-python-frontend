@@ -8,8 +8,8 @@
 
 const usp = new URLSearchParams(window.location.search);
 
-// Specify custom API with ?useAPI=https://my-api-host.com
-const apiHost = usp.get("useAPI") || "https://api.sixtysecondshell.srg.id.au"
+// Specify custom API with ?useAPI=my-api-host.com
+const apiHost = usp.get("useAPI") || "api.sixtysecondshell.srg.id.au"
 
 let isTerminalOn = false;
 let timeLeft = 1;
