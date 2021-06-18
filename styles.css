@@ -43,7 +43,7 @@ div.container {
 
 div#editor-container {
   max-width: 600px;
-  /* display: none; */
+  display: none;
 }
 
 #editor {
