@@ -36,6 +36,9 @@ fetch(window.location.protocol + "//" + apiHost + "/meta/languages").then(r => r
     langLi = document.createElement("div");
     langLi.classList.add("language");
 
+    langImg = document.createElement("img");
+    langImg.src = lang.image;
+
     langLink = document.createElement("a");
     langLink.innerText = lang.name;
     langLink.href = `?language=${encodeURIComponent(lang.name)}&useAPI=${encodeURIComponent(apiHost)}`;

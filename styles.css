@@ -53,6 +53,16 @@ div.timer.flashing {
   50% { opacity: 0; }
 }
 
+div.language {
+  padding: 10px;
+  margin: 15px;
+}
+
+div.language img {
+  display: block;
+  height: 1.3rem;
+}
+
 i {
   font-size: 0.8rem;
 }
