@@ -32,9 +32,14 @@ Under MIT Licence
     <div class="container">
 
       <h1>sixty seconds of <span id="lang">python</span></h1>
-      <p>
-        The following languages are also available: <span id="languages">[loading]</span>
-      </p>
+
+      <details>
+        <summary><span id="howmany"></span> more languages</summary>
+        <ul id="languages">
+          <li id="loading-languages">[loading]</li>
+        </ul>
+      </details>
+
       <p>
         Next to you is a terminal. Anything that you wish can happen. You can create or destroy - but it must be within sixty seconds. Are you up for the challenge?<br/><br/>
 
@@ -42,7 +47,7 @@ Under MIT Licence
           A connection to the server could not be established. It's reset every few minutes, so check back soon!
         </div>
 
-        <i>Note: this terminal is a real live Python environment! You can do anything! <a href="/__repl">Source code</a></i>
+        <i>Note: this terminal is a real live Python environment! You can do anything! <a href="//github.com/shaunakg/python-in-a-box">Source code</a></i>
       </p>
 
       <div id="timer" class="timer"></div>
@@ -51,7 +56,7 @@ Under MIT Licence
 
     </div>
 
-    <div id="terminal"></div>
+    <div id="terminal" class="inactive"></div>
 
     <script src="https://unpkg.com/xterm@4.11.0/lib/xterm.js"></script>
     <script src="https://unpkg.com/xterm-addon-attach@0.6.0/lib/xterm-addon-attach.js"></script>

@@ -4,8 +4,12 @@
 // Under MIT Licence
 // 
 
+// THIS ASSUMES A LOCAL SERVER ON /, CHECK https://sixtysecondsofpython.srg.id.au/ FOR REAL SITE
+
 const usp = new URLSearchParams(window.location.search);
-const apiHost = usp.get("useAPI") || "shaunak-personal.ts.r.appspot.com"
+
+// Specify custom API with ?useAPI=https://my-api-host.com
+const apiHost = usp.get("useAPI") || "https://api.sixtysecondshell.srg.id.au"
 
 let isTerminalOn = false;
 let timeLeft = 1;
@@ -18,16 +22,34 @@ let messages = [];
 let timer = document.getElementById("timer");
 let button = document.getElementById("start-btn");
 
-const current_language = usp.get('lang') || usp.get('language') || 'python3';
+const current_language = usp.get('lang') || usp.get('language') || 'Python3';
 
 const languages = document.getElementById("languages");
 const lang = document.getElementById("lang");
 
 lang.innerText = current_language;
-fetch("https://" + apiHost + "/meta/languages").then(r => r.json()).then(j => {
+fetch(window.location.protocol + "//" + apiHost + "/meta/languages").then(r => r.json()).then(j => {
 
-  languages.innerHTML = j.map(l => `<a href="?language=${l}&useAPI=${apiHost}">${l}</a>`).join(", ");
-  if (!j.includes(current_language)) {
+  document.getElementById("howmany").innerText = j.length;
+  const names = j.map( l => l.name );
+
+  j.forEach(lang => {
+
+    langLi = document.createElement("li")
+
+    langLink = document.createElement("a");
+    langLink.innerText = lang.name;
+    langLink.href = `?language=${encodeURIComponent(lang.name)}&useAPI=${encodeURIComponent(apiHost)}`;
+    langLink.title = lang.description;
+
+    langLink.classList.add("language-link")
+
+    langLi.appendChild(langLink)
+    languages.appendChild(langLi);
+    
+  });
+
+  if (!names.includes(current_language)) {
 
     document.getElementById("error").style.display="block";
     document.getElementById("error").innerText = `Your chosen language, "${current_language}", is not supported. Please pick another from the menu above.`;
@@ -44,9 +66,24 @@ fetch("https://" + apiHost + "/meta/languages").then(r => r.json()).then(j => {
 
   }
 
+  document.getElementById("loading-languages").style.display = "none";
+
 }).catch(error => {
+
+  document.getElementById("loading-languages").style.display = "none";
+
+  console.error(error);
   languages.innerHTML = "<span style='color:red'>[error]</span>";
+
 })
+
+function done() {
+  clearInterval(interval);
+  timer.style.width = "100%";
+  timer.classList.add("flashing");
+  button.style.display = "inline-block";
+  isTerminalOn = false;
+}
 
 function start() {
 
@@ -55,6 +92,8 @@ function start() {
   }
 
   isTerminalOn = true;
+
+  terminal.classList.remove("inactive");
   terminal.innerHTML = ""; // Clear if run twice.
   button.style.display = "none";
 
@@ -66,11 +105,7 @@ function start() {
   interval = setInterval(() => {
 
     if (timeLeft < 0) {
-      clearInterval(interval);
-      timer.style.width = "100%";
-      timer.classList.add("flashing");
-      button.style.display = "inline-block";
-      isTerminalOn = false;
+      return done();
     }
 
     timer.style.width = (timeLeft * 100) + "%";
@@ -118,6 +153,7 @@ function start() {
   }
 
   socket.onopen = () => {
+
     const websocketAddon = new AttachAddon.AttachAddon(socket);
     const resizeAddon = new FitAddon.FitAddon();
 
@@ -128,6 +164,17 @@ function start() {
 
     resizeAddon.fit();
     window.addEventListener("resize", () => resizeAddon.fit());
+
+    socket.addEventListener("message", e => {
+
+      if (e.data == "__TERMEXIT") {
+
+        return done();
+
+      }
+
+    })
+
   }
 
 }
