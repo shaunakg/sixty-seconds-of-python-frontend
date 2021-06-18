@@ -66,6 +66,10 @@ fetch(window.location.protocol + "//" + apiHost + "/meta/languages").then(r => r
 
         }
 
+      } else {
+
+        button.onclick = start_ws;
+
       }
 
     }
