@@ -38,6 +38,7 @@ fetch(window.location.protocol + "//" + apiHost + "/meta/languages").then(r => r
 
     langImg = document.createElement("img");
     langImg.src = lang.image;
+    langLi.appendChild(langImg);
 
     langLink = document.createElement("a");
     langLink.innerText = lang.name;
