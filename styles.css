@@ -68,6 +68,7 @@ div.language {
   flex-flow: column wrap;
   justify-content: center;
   align-items: center;
+  max-width: 12ch;
 }
 
 div.language img {
@@ -75,6 +76,12 @@ div.language img {
   height: 50px;
 
   margin-bottom: 1.2rem;
+}
+
+div.language a {
+
+  text-align: center;
+
 }
 
 i {
