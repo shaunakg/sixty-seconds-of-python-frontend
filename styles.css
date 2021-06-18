@@ -64,11 +64,17 @@ div.timer.flashing {
 div.language {
   padding: 10px;
   margin: 15px;
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: center;
+  align-items: center;
 }
 
 div.language img {
   display: block;
-  height: 1.3rem;
+  height: 50px;
+
+  margin-bottom: 1.2rem;
 }
 
 i {
