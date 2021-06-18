@@ -45,9 +45,38 @@ fetch(window.location.protocol + "//" + apiHost + "/meta/languages").then(r => r
 
       if (lang.noshell) {
 
+        const modeScript = document.createElement("script");
+        modeScript.src = `codemirror/mode/${encodeURIComponent(lang.name)}/${encodeURIComponent(lang.name)}.js`;
+        document.body.appendChild(modeScript);
+
+        const cm = CodeMirror(document.getElementById("editor"), {
+          lineNumbers: true,
+          gutter: true,
+          lineWrapping: true,      
+          readOnly: true,
+          mode: lang.name
+        });
+
+        cm.setSize("100%", "100%");
+
         document.getElementById("editor-container").style.display = "block";
-        button.onclick = () => {
-          
+
+        button.onclick = (e) => {
+
+          cm.setOption("readOnly", false);
+
+          start_timer();
+          e.target.style.display = "none";
+
+          setTimeout(() => {
+
+            done();
+
+            cm.setOption("readOnly", true);
+            document.getElementById("editor").classList.add("editor-locked");
+
+          }, 60000);
+
         }
 
       } else {
@@ -108,25 +137,16 @@ fetch(window.location.protocol + "//" + apiHost + "/meta/languages").then(r => r
 })
 
 function done() {
+
   clearInterval(interval);
   timer.style.width = "100%";
   timer.classList.add("flashing");
   button.style.display = "inline-block";
   isTerminalOn = false;
+
 }
 
-function start_ws() {
-
-  if (isTerminalOn) {
-    return;
-  }
-
-  isTerminalOn = true;
-
-  terminal.classList.remove("inactive");
-  terminal.innerHTML = ""; // Clear if run twice.
-  button.style.display = "none";
-
+function start_timer() {
   timer.classList.remove("flashing");
   document.getElementById("error").style.display="none";
   timer.style.width = "100%";
@@ -142,6 +162,24 @@ function start_ws() {
     timeLeft -= 1/totalTime;
 
   }, 1000);
+
+  return interval;
+
+}
+
+function start_ws() {
+
+  if (isTerminalOn) {
+    return;
+  }
+
+  isTerminalOn = true;
+
+  terminal.classList.remove("inactive");
+  terminal.innerHTML = ""; // Clear if run twice.
+  button.style.display = "none";
+
+  start_timer();
 
   const term = new Terminal();
   let socket;

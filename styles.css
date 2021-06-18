@@ -43,11 +43,25 @@ div.container {
 
 div#editor-container {
   max-width: 600px;
-  display: none;
+  /* display: none; */
 }
 
-div#editor {
-  height: 400px;
+#editor {
+  height: 300px;
+  width: 100%;
+
+  border-radius: 3px;
+  border: 2px solid #EEE;
+
+  margin-bottom: 20px;
+}
+
+#editor.editor-locked {
+  pointer-events: none;
+  cursor: not-allowed;
+  user-select: none;
+
+  opacity: 0.8;
 }
 
 div.timer {

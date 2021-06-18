@@ -23,6 +23,9 @@ Under MIT Licence
       crossorigin="anonymous"
     />
 
+    <!-- For CodeMirror -->
+    <link rel="stylesheet" href="codemirror/lib/codemirror.css">
+
     <link rel="stylesheet" href="styles.css" />
 
   </head>
@@ -70,6 +73,8 @@ Under MIT Licence
 
       <div id="editor"></div>
 
+      <button id="editor-submit-code" class="cta btn" style="background-color: #68A357;">Submit my code</button>
+
     </div>
 
     <div id="terminal" class="inactive"></div>
@@ -79,6 +84,11 @@ Under MIT Licence
     <script src="https://unpkg.com/xterm-addon-attach@0.6.0/lib/xterm-addon-attach.js"></script>
     <script src="https://unpkg.com/xterm-addon-fit@0.5.0/lib/xterm-addon-fit.js"></script>
 
+    <!-- CodeMirror -->
+    <script src="codemirror/lib/codemirror.js"></script>
+    <script src="codemirror/addon/dialog/dialog.js"></script>
+    <script src="codemirror/addon/search/search.js"></script>
+    
     <script src="script.js"></script>
 
   </body>
