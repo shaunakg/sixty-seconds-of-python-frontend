@@ -57,6 +57,15 @@ i {
   font-size: 0.8rem;
 }
 
+div#languages {
+
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+  justify-content: space-between;
+
+}
+
 .cta.btn {
   background-color: #414073;
   color: white;
