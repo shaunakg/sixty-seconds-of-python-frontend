@@ -4,12 +4,10 @@
 // Under MIT Licence
 // 
 
-// THIS ASSUMES A LOCAL SERVER ON /, CHECK https://sixtysecondsofpython.srg.id.au/ FOR REAL SITE
-
 const usp = new URLSearchParams(window.location.search);
 
 // Specify custom API with ?useAPI=my-api-host.com
-const apiHost = usp.get("useAPI") || "api.sixtysecondshell.srg.id.au"
+const apiHost = usp.get("useAPI") || "60api.sixtysecondshell.srg.id.au"
 
 let isTerminalOn = false;
 let timeLeft = 1;
