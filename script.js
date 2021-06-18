@@ -45,25 +45,9 @@ fetch(window.location.protocol + "//" + apiHost + "/meta/languages").then(r => r
 
       if (lang.noshell) {
 
-        let editor = monaco.editor.create(
-          document.getElementById("editor"),
-          {
-            language: lang.name.toLowerCase(), // In case there is a syntax handler for our language
-            theme: "vscode-dark",
-            readOnly: true,
-            value: [
-              "Enter your code here (delete this line)."
-            ]
-          }
-        )
-
         document.getElementById("editor-container").style.display = "block";
         button.onclick = () => {
-
-          editor.updateOptions({
-            readOnly: false
-          })
-
+          
         }
 
       } else {
