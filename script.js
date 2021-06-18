@@ -33,7 +33,7 @@ fetch(window.location.protocol + "//" + apiHost + "/meta/languages").then(r => r
 
   j.forEach(lang => {
 
-    langLi = document.createElement("li")
+    langLi = document.createElement("div")
 
     langLink = document.createElement("a");
     langLink.innerText = lang.name;
