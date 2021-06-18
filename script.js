@@ -21,17 +21,56 @@ let timer = document.getElementById("timer");
 let button = document.getElementById("start-btn");
 
 const current_language = usp.get('lang') || usp.get('language') || 'Python3';
+const current_language_data = {};
 
 const languages = document.getElementById("languages");
-const lang = document.getElementById("lang");
 
-lang.innerText = current_language;
+document.querySelectorAll(".lang").forEach(e => {
+
+  e.innerText = current_language;
+
+});
+
 fetch(window.location.protocol + "//" + apiHost + "/meta/languages").then(r => r.json()).then(j => {
 
   document.getElementById("howmany").innerText = j.length;
   const names = j.map( l => l.name );
 
   j.forEach(lang => {
+
+    if (lang.name === current_language) {
+
+      // We have our language, now do language-specific things
+      // Check if interactive or not
+
+      if (lang.noshell) {
+
+        let editor = monaco.editor.create(
+          document.getElementById("editor"),
+          {
+            language: lang.name.toLowerCase(), // In case there is a syntax handler for our language
+            theme: "vscode-dark",
+            readOnly: true,
+            value: [
+              "Enter your code here (delete this line)."
+            ]
+          }
+        )
+
+        document.getElementById("editor-container").style.display = "block";
+        button.onclick = () => {
+
+          editor.updateOptions({
+            readOnly: false
+          })
+
+        }
+
+      }
+
+    }
+
+    // Add language to the list
 
     langLi = document.createElement("div");
     langLi.classList.add("language");
@@ -88,7 +127,7 @@ function done() {
   isTerminalOn = false;
 }
 
-function start() {
+function start_ws() {
 
   if (isTerminalOn) {
     return;

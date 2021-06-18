@@ -23,6 +23,8 @@ Under MIT Licence
       crossorigin="anonymous"
     />
 
+    <link rel="stylesheet" data-name="vs/editor/editor.main" href="_monaco/min/vs/editor/editor.main.css">
+
     <link rel="stylesheet" href="styles.css" />
 
   </head>
@@ -31,7 +33,7 @@ Under MIT Licence
     
     <div class="container">
 
-      <h1>sixty seconds of <span id="lang">python</span></h1>
+      <h1>sixty seconds of <span class="lang">python</span></h1>
 
       <details>
         <summary><span id="howmany"></span> more languages</summary>
@@ -52,15 +54,38 @@ Under MIT Licence
 
       <div id="timer" class="timer"></div>
 
-      <button id="start-btn" onclick="start()" class="cta btn">start</button>
+      <button id="start-btn" class="cta btn">start</button>
+
+    </div>
+
+    <div id="editor-container" class="">
+
+      <h2>This one's a little different.</h2>
+      <p>
+
+        Your selected language, <b class="lang">[loading]</b>, doesn't have an input-output shell. Don't worry though, you'll still get the full Sixty Seconds experience.<br/>
+        <br/>
+
+        Below is a code editor. Click 'start' on the left, and you'll get 60 seconds to write a program in <b class="lang">[loading]</b>.
+
+      </p>
+
+      <div id="editor"></div>
 
     </div>
 
     <div id="terminal" class="inactive"></div>
 
+    <!-- Monaco Editor in HTML -->
+    <script>var require = { paths: { 'vs': '_monaco/min/vs' } };</script>
+    <script src="_monaco/min/vs/loader.js"></script>
+    <script src="_monaco/min/vs/editor/editor.main.nls.js"></script>
+    <script src="_monaco/min/vs/editor/editor.main.js"></script>
+
     <script src="https://unpkg.com/xterm@4.11.0/lib/xterm.js"></script>
     <script src="https://unpkg.com/xterm-addon-attach@0.6.0/lib/xterm-addon-attach.js"></script>
     <script src="https://unpkg.com/xterm-addon-fit@0.5.0/lib/xterm-addon-fit.js"></script>
+
     <script src="script.js"></script>
 
   </body>

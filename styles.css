@@ -41,6 +41,14 @@ div.container {
   max-width: 500px;
 }
 
+div#editor-container {
+  max-width: 600px;
+}
+
+div#editor {
+  height: 400px;
+}
+
 div.timer {
   width: 100%;
   padding: 0; margin: 0;
