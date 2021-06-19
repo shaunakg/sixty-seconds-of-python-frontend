@@ -15,6 +15,7 @@ let totalTime = 60;
 let interval = null;
 let terminal = document.getElementById("terminal");
 
+let cm;
 let messages = [];
 
 let timer = document.getElementById("timer");
@@ -49,7 +50,7 @@ fetch(window.location.protocol + "//" + apiHost + "/meta/languages").then(r => r
         modeScript.src = `codemirror/mode/${encodeURIComponent(lang.name)}/${encodeURIComponent(lang.name)}.js`;
         document.body.appendChild(modeScript);
 
-        const cm = CodeMirror(document.getElementById("editor"), {
+        cm = CodeMirror(document.getElementById("editor"), {
           lineNumbers: true,
           gutter: true,
           lineWrapping: true,      
@@ -74,6 +75,8 @@ fetch(window.location.protocol + "//" + apiHost + "/meta/languages").then(r => r
 
             cm.setOption("readOnly", true);
             document.getElementById("editor").classList.add("editor-locked");
+
+            document.getElementById("editor-submit-code").disabled = false;
 
           }, 60000);
 
@@ -134,7 +137,7 @@ fetch(window.location.protocol + "//" + apiHost + "/meta/languages").then(r => r
   console.error(error);
   languages.innerHTML = "<span style='color:red'>[error]</span>";
 
-})
+});
 
 function done() {
 
@@ -167,7 +170,7 @@ function start_timer() {
 
 }
 
-function start_ws() {
+function start_ws(path) {
 
   if (isTerminalOn) {
     return;
@@ -188,7 +191,7 @@ function start_ws() {
     socket = new WebSocket(
       `${document.location.protocol === "http:" ? "ws" : "wss"}://${
         apiHost
-      }/ws/${current_language}`
+      }/${ path || "ws/" + current_language }`
     );
   } catch (e) {
 
@@ -244,5 +247,56 @@ function start_ws() {
     })
 
   }
+
+}
+
+document.getElementById("editor-submit-code").onclick = async (e) => {
+  
+  let response;
+  e.target.innerText = "Loading...";
+
+  try {
+    response = await fetch(
+
+      location.protocol + "//" + apiHost + "/exec_noshell",
+      {
+        
+        method: 'POST',
+        headers: {
+          'Content-Type': "application/json"
+        },
+
+        body: JSON.stringify({
+
+          language: current_language,
+          code: cm.getValue()
+          
+        })
+
+      }
+
+    )
+  } catch (e) {
+
+    console.error(e);
+
+    document.getElementById("error").style.display="block";
+    document.getElementById("error").innerText = "Sorry, there was an error contacting the server.";
+    return;
+    
+  }
+
+  const json = await response.json();
+  if (!json.success) {
+
+    document.getElementById("error").style.display="block";
+    document.getElementById("error").innerText = json.message;
+    return;
+
+  }
+
+
+  return start_ws(`ws/_exec/${json.id}`)
+
 
 }
