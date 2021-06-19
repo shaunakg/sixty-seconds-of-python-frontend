@@ -65,6 +65,7 @@ fetch(window.location.protocol + "//" + apiHost + "/meta/languages").then(r => r
         button.onclick = (e) => {
 
           cm.setOption("readOnly", false);
+          document.getElementById("editor-submit-code").disabled = false;
 
           start_timer();
           e.target.style.display = "none";
@@ -75,8 +76,6 @@ fetch(window.location.protocol + "//" + apiHost + "/meta/languages").then(r => r
 
             cm.setOption("readOnly", true);
             document.getElementById("editor").classList.add("editor-locked");
-
-            document.getElementById("editor-submit-code").disabled = false;
 
           }, 60000);
 
