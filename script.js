@@ -55,7 +55,8 @@ fetch(window.location.protocol + "//" + apiHost + "/meta/languages").then(r => r
           gutter: true,
           lineWrapping: true,      
           readOnly: true,
-          mode: lang.name
+          mode: lang.name,
+          value: lang.hello_world || ""
         });
 
         cm.setSize("100%", "100%");
