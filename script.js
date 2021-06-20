@@ -141,6 +141,7 @@ fetch(window.location.protocol + "//" + apiHost + "/meta/languages").then(r => r
 function done() {
 
   clearInterval(interval);
+  
   timer.style.width = "100%";
   timer.classList.add("flashing");
   button.style.display = "inline-block";
