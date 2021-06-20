@@ -300,7 +300,7 @@ document.getElementById("editor-submit-code").onclick = async (e) => {
 
 
   document.getElementById("editor-container").style.display = "none";
-  return start_ws(path=`ws/_exec/${json.id}`)
+  return start_ws(null, `ws/_exec/${json.id}`)
 
 
 }
