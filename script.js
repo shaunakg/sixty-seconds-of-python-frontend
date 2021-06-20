@@ -92,22 +92,24 @@ fetch(window.location.protocol + "//" + apiHost + "/meta/languages").then(r => r
 
     // Add language to the list
 
-    langLi = document.createElement("div");
-    langLi.classList.add("language");
+    if (!lang.hidden) {
+      langLi = document.createElement("div");
+      langLi.classList.add("language");
 
-    langImg = document.createElement("img");
-    langImg.src = lang.image;
-    langLi.appendChild(langImg);
+      langImg = document.createElement("img");
+      langImg.src = lang.image;
+      langLi.appendChild(langImg);
 
-    langLink = document.createElement("a");
-    langLink.innerText = lang.name;
-    langLink.href = `?language=${encodeURIComponent(lang.name)}&useAPI=${encodeURIComponent(apiHost)}`;
-    langLink.title = lang.description;
+      langLink = document.createElement("a");
+      langLink.innerText = lang.name;
+      langLink.href = `?language=${encodeURIComponent(lang.name)}&useAPI=${encodeURIComponent(apiHost)}`;
+      langLink.title = lang.description;
 
-    langLink.classList.add("language-link");
+      langLink.classList.add("language-link");
 
-    langLi.appendChild(langLink)
-    languages.appendChild(langLi);
+      langLi.appendChild(langLink)
+      languages.appendChild(langLi);
+    }
     
   });
 
