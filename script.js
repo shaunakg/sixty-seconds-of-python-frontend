@@ -55,11 +55,11 @@ fetch(window.location.protocol + "//" + apiHost + "/meta/languages").then(r => r
           gutter: true,
           lineWrapping: true,      
           readOnly: true,
-          mode: lang.name,
-          value: lang.hello_world || ""
+          mode: lang.name
         });
 
         cm.setSize("100%", "100%");
+        cm.setValue(lang.hello_world);
 
         document.getElementById("editor-container").style.display = "block";
 
