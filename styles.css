@@ -91,7 +91,7 @@ div.language {
   flex-flow: column wrap;
   justify-content: center;
   align-items: center;
-  max-width: 12ch;
+  width: 10ch;
 }
 
 div.language img {
