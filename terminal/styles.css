@@ -6,6 +6,8 @@ body {
     height: 100vh;
     background-color: black;
 
+    overflow: hidden;
+
 }
 
 #terminal {
