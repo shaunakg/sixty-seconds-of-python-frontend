@@ -1,18 +1,13 @@
 body {
 
     margin: 0;
-    padding: 0;
+    padding: 20px;
     
     height: 100vh;
+    background-color: black;
 
 }
 
-.terminal-container {
-
-    width: 100%;
+#terminal {
     height: 100%;
-
-    padding: 20px;
-    background-color: black;
-
 }
