@@ -5,7 +5,7 @@ const apiHost = (new URLSearchParams(location.search)).get("useAPI") || "60api.s
 const socket = new WebSocket(
     `${document.location.protocol === "http:" ? "ws" : "wss"}://${
       apiHost
-    }/${ path || "ws/_interactive_terminal" }`
+    }/ws/_interactive_terminal`
 );
 
 const term = new Terminal();
