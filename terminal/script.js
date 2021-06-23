@@ -1,11 +1,13 @@
 
 // Specify custom API with ?useAPI=my-api-host.com
-const apiHost = (new URLSearchParams(location.search)).get("useAPI") || "60api.srg.id.au"
+const usp = new URLSearchParams(location.search);
+const apiHost = usp.get("useAPI") || "60api.srg.id.au"
+const path = usp.get("language") || "_interactive_terminal";
 
 const socket = new WebSocket(
     `${document.location.protocol === "http:" ? "ws" : "wss"}://${
       apiHost
-    }/ws/_interactive_terminal`
+    }/ws/${path}`
 );
 
 const term = new Terminal();
@@ -25,10 +27,13 @@ socket.onopen = () => {
 
     socket.addEventListener("message", e => {
 
-        if (e.data == "__TERMEXIT") {
-            return done();
-        }
+        if (e.data.includes("__ISHELL_EVNT")) {
 
-    })
+            const event = e.data.split("|");
+            window.location.href = `?useAPI=${apiHost}&language=${event[2]}`;
+
+        }
+        
+    });
 
 }
