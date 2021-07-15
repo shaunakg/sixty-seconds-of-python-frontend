@@ -28,6 +28,15 @@ const current_language_data = {};
 
 const languages = document.getElementById("languages");
 
+const update_block = document.getElementById("updates");
+const update_close = document.getElementById("update-close");
+
+update_close.onclick = () => { update_block.style.display = "none"; localStorage.setItem("platform-update-shown", "yes") };
+localStorage.getItem("platform-update-shown") && update_close.click();
+
+const update_title = document.getElementById("update-title");
+const update_text = document.getElementById("update-text");
+
 document.querySelectorAll(".lang").forEach(e => {
   e.innerText = current_language;
 });
