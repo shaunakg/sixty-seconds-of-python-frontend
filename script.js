@@ -273,7 +273,7 @@ function start_ws(e, path) {
 
   const addPackage = (name) => {
 
-    socket.send(
+    name.length > 0 && socket.send(
       [
         "__CLIENT_EVENT",
         "PACKAGE",
@@ -285,7 +285,7 @@ function start_ws(e, path) {
   }
 
   const removePackage = (name) => {
-    socket.send(
+    name.length > 0 && socket.send(
       [
         "__CLIENT_EVENT",
         "PACKAGE",
