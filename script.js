@@ -47,9 +47,9 @@ fetch(window.location.protocol + "//" + apiHost + "/meta/languages").then(r => r
       // Check if interactive or not
 
       if (lang.packages) {
-        document.getElementById("terminal-container").style.display = "block";
+        document.getElementById("packages").style.display = "block";
       } else {
-        document.getElementById("terminal-container").style.display = "none";
+        document.getElementById("packages").style.display = "none";
       }
 
       if (lang.noshell) {
