@@ -251,6 +251,40 @@ function start_ws(e, path) {
 
   }
 
+  window.addPackage = (name) => {
+
+    socket.send(
+      [
+        "__CLIENT_EVENT",
+        "PACKAGE",
+        "add",
+        btoa(name)
+      ].join("|")
+    )
+
+  }
+
+  window.removePackage = (name) => {
+    socket.send(
+      [
+        "__CLIENT_EVENT",
+        "PACKAGE",
+        "remove",
+        btoa(name)
+      ].join("|")
+    )
+  }
+
+  window.listPackages = () => {
+    socket.send(
+      [
+        "__CLIENT_EVENT",
+        "PACKAGE",
+        "list"
+      ].join("|")
+    )
+  }
+
   return socket
 
 }
@@ -303,39 +337,5 @@ document.getElementById("editor-submit-code").onclick = async (e) => {
 
   document.getElementById("editor-container").style.display = "none";
   const socket = start_ws(null, `ws/_exec/${json.id}`);
-
-  window.addPackage = (name) => {
-
-    socket.send(
-      [
-        "__CLIENT_EVENT",
-        "PACKAGE",
-        "add",
-        btoa(name)
-      ].join("|")
-    )
-
-  }
-
-  window.removePackage = (name) => {
-    socket.send(
-      [
-        "__CLIENT_EVENT",
-        "PACKAGE",
-        "remove",
-        btoa(name)
-      ].join("|")
-    )
-  }
-
-  window.listPackages = () => {
-    socket.send(
-      [
-        "__CLIENT_EVENT",
-        "PACKAGE",
-        "list"
-      ].join("|")
-    )
-  }
 
 }
