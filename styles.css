@@ -162,8 +162,11 @@ div#terminal {
 .package-manager {
   padding: 20px;
   margin: 15px;
+  margin-top: 40px;
   border: 3px solid #EEE;
   border-radius: 3px;
+
+  max-width: 40vw;
 
   display: none;
 }
