@@ -29,9 +29,7 @@ const current_language_data = {};
 const languages = document.getElementById("languages");
 
 document.querySelectorAll(".lang").forEach(e => {
-
   e.innerText = current_language;
-
 });
 
 fetch(window.location.protocol + "//" + apiHost + "/meta/languages").then(r => r.json()).then(j => {
@@ -116,6 +114,11 @@ fetch(window.location.protocol + "//" + apiHost + "/meta/languages").then(r => r
       langLink.classList.add("language-link");
 
       langLi.appendChild(langLink)
+
+      if (lang.packages) {
+        langLink.classList.add("has-packages");
+      }
+
       languages.appendChild(langLi);
     }
     

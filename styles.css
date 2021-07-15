@@ -223,3 +223,19 @@ div#terminal {
   color: white;
   background-color: #3498DB;
 }
+
+.language-link.has-packages::after {
+
+  content: "PKG";
+  display: inline-block;
+
+  padding: 3px;
+  margin-right: 5px;
+
+  border-radius: 2px;
+  background-color: #2ECC40;
+  
+  color: white;
+  font-size: 0.7em;
+
+}
