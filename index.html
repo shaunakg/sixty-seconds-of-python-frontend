@@ -104,7 +104,30 @@ Under MIT Licence
 
     </div>
 
-    <div id="terminal" class="inactive"></div>
+    <div class="terminal-container inactive">
+
+      <div id="terminal"></div>
+
+      <div id="packages" class="package-manager">
+
+        <h2>Package manager</h2>
+        <p>
+          You can add and remove packages using this package manager by typing the name and pressing the '+' or '-' buttons. List packages using the '*' button.
+        </p>
+
+        <div class="inputs">
+
+          <input id="package" type="text" placeholder="Package name - e.g 'requests'" />
+
+          <button id="package-add" class="green btn">+</button>
+          <button id="package-remove" class="red btn">-</button>
+          <button id="package-list" class="blue btn">*</button>
+
+        </div>
+
+      </div>
+
+    </div>
 
     <!-- XTerm -->
     <script src="https://unpkg.com/xterm@4.11.0/lib/xterm.js"></script>

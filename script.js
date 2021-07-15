@@ -13,7 +13,9 @@ let isTerminalOn = false;
 let timeLeft = 1;
 let totalTime = 60;
 let interval = null;
+
 let terminal = document.getElementById("terminal");
+let terminalContainer = document.getElementById("terminal-container");
 
 let cm;
 let messages = [];
@@ -181,7 +183,7 @@ function start_ws(e, path) {
 
   isTerminalOn = true;
 
-  terminal.classList.remove("inactive");
+  terminalContainer.classList.remove("inactive");
   terminal.innerHTML = ""; // Clear if run twice.
   button.style.display = "none";
 
@@ -251,7 +253,7 @@ function start_ws(e, path) {
 
   }
 
-  window.addPackage = (name) => {
+  const addPackage = (name) => {
 
     socket.send(
       [
@@ -264,7 +266,7 @@ function start_ws(e, path) {
 
   }
 
-  window.removePackage = (name) => {
+  const removePackage = (name) => {
     socket.send(
       [
         "__CLIENT_EVENT",
@@ -275,7 +277,7 @@ function start_ws(e, path) {
     )
   }
 
-  window.listPackages = () => {
+  const listPackages = () => {
     socket.send(
       [
         "__CLIENT_EVENT",
@@ -284,6 +286,10 @@ function start_ws(e, path) {
       ].join("|")
     )
   }
+
+  document.getElementById("package-add").onclick = () => addPackage(document.getElementById("package").value);
+  document.getElementById("package-remove").onclick = () => removePackage(document.getElementById("package").value);
+  document.getElementById("package-list").onclick = listPackages;
 
   return socket
 
