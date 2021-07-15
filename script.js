@@ -46,6 +46,12 @@ fetch(window.location.protocol + "//" + apiHost + "/meta/languages").then(r => r
       // We have our language, now do language-specific things
       // Check if interactive or not
 
+      if (lang.packages) {
+        document.getElementById("terminal-container").style.display = "block";
+      } else {
+        document.getElementById("terminal-container").style.display = "none";
+      }
+
       if (lang.noshell) {
 
         const modeScript = document.createElement("script");
