@@ -260,6 +260,21 @@ div#terminal {
 
 }
 
+.new::after {
+  content: "new";
+  display: inline-block;
+
+  padding: 0.3em;
+  margin-left: 1ch;
+  vertical-align: middle;
+
+  border-radius: 2px;
+  background-color: #2ECC40;
+  
+  color: white;
+  font-size: 0.8em;
+}
+
 .update-banner {
   padding: 15px;
   background-color: #2ECC40;
