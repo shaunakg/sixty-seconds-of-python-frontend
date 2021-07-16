@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <title>SixtySecondShell - Mobile Interstitial</title>
+    <meta name="title" content="SixtySecondShell - What can you do in 60 seconds?">
+    <meta name="description" content="Challenge your skills by creating something great in more than twenty programming languages in under a minute.">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://sixtysecondshell.srg.id.au/">
+    <meta property="og:title" content="SixtySecondShell - What can you do in 60 seconds?">
+    <meta property="og:description" content="Challenge your skills by creating something great in more than twenty programming languages in under a minute.">
+    <meta property="og:image" content="/images/og-sixty-seconds-of-anything.png">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://sixtysecondshell.srg.id.au/">
+    <meta property="twitter:title" content="SixtySecondShell - What can you do in 60 seconds?">
+    <meta property="twitter:description" content="Challenge your skills by creating something great in more than twenty programming languages in under a minute.">
+    <meta property="twitter:image" content="/images/og-sixty-seconds-of-anything.png">
+
+    <style>
+
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            font-family: -apple-system, 'Inter', BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            height: 100vh;
+
+            padding: 0;
+            margin: 0;
+
+            line-height: 1.4;
+        }
+
+        .container {
+            margin: 20px;
+            max-width: 600px;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h2>Are you on mobile?</h2>
+        <p>
+            If you are on a mobile device, you can use the <a id="terminal" href="/terminal/">interactive terminal</a> version of SixtySecondShell.
+        </p>
+
+        <p>
+            This has a subset of the features available on the desktop version but displays in a more compact fashion.
+        </p>
+
+        <p>
+            Or, you can <a href="/" id="continue">continue to the desktop version</a>, but you may experience some display and performance issues.
+        </p>
+
+        <label>
+            <input type="checkbox" id="dontShow"> Don't show me this again
+        </label>
+
+    </div>
+
+    <script>
+
+        document.getElementById('terminal').onclick = function () {
+            document.getElementById("dontShow") && localStorage.setItem('shownMobileWarning', '1');
+            window.location.href = '/terminal/';
+        };
+
+        document.getElementById('continue').onclick = function() {
+            document.getElementById("dontShow") && localStorage.setItem('shownMobileWarning', '1');
+            window.location.replace('/');
+        }
+
+    </script>
+
+</body>
+
+</html>

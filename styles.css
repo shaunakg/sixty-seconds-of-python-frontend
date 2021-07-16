@@ -34,7 +34,9 @@ body {
 }
 
 .credits p {
-  margin: 0;
+  margin: 0 15px;
+  text-align: center;
+  display: block;
 }
 
 a {
